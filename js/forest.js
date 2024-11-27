@@ -701,6 +701,7 @@ addLayer("forest", {
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
+		treeExhaustion: 0,
 		needInitTrees: true,
 		forestUpdateTime: 0,
 		sawmill: {
@@ -730,6 +731,8 @@ addLayer("forest", {
 		"Forest": {
 			content: [
 				["display-text", "<h1>Forest</h1>",],
+				"blank",
+				["display-text", function() {return `Trees take longer to cut the more time you spend cutting.<br>If it gets too slow, take a break and do something else!<br>Currently dividing cutting speed by ${format(tmp.mod.cuttingExhPenalty)}`}],
 				"blank",
 				"grid",
 			],
@@ -1088,27 +1091,44 @@ addLayer("forest", {
 		}
 		if (cuttingTree) {
 			keepCuttingTree = false
-			
-			cuttingTreeDamage += diff*tmp.mod.cutPower
+						
+			cuttingTreeDamage += diff*tmp.mod.cutPower/tmp.mod.cuttingExhPenalty
 			
 			if(isCuttingTreeDestroyed()) {
 				player.stats.totalTreesCut++
+				player.forest.treeExhaustion += cuttingTree[1]/2
 				let treeType = cuttingTree[0]
 				if (player.stats.unlockedWoods.indexOf(treeType) == -1) player.stats.unlockedWoods.push(treeType)
+					
 				let logName = woods[treeType].name+" Log"
-				let logAmount = cuttingTree[1]
-				if (tmp.mod.autosaw && Math.random() < tmp.mod.autosaw) {
-					if (sawmillInputs[logName]) logName = sawmillInputs[logName].output
-					logAmount *= 2 // log to plank doubles
+				let treeSize = cuttingTree[1]
+				for (let i=0;i<treeSize;i++) {
+					
+					let itemName = logName
+					let itemAmt = 1
+					
+					if (tmp.mod.autosaw && (Math.random() < tmp.mod.autosaw)) {
+						if (sawmillInputs[itemName]) {
+							itemName = sawmillInputs[itemName].output
+							itemAmt *= 2 // log to plank doubles
+						}
+					}
+					if (tmp.mod.doubleDropWood && (Math.random() < tmp.mod.doubleDropWood)) {
+						// Double drop
+						itemAmt *= 2
+					}
+					addToInventory(itemName,itemAmt)
+					
 				}
-				if (Math.random() < tmp.mod.doubleDropWood) {
-					// Double drop
-					logAmount *= 2
-				}
-				addToInventory(logName,logAmount)
+				
 				cuttingTree[0] = null
 				cuttingTree[1] = 0				
 			}
+		}
+		
+		if (player.forest.treeExhaustion < 0.01) player.forest.treeExhaustion = 0
+		else if (player.forest.treeExhaustion > 0) {
+			player.forest.treeExhaustion *= (0.99**diff)
 		}
 		
 		updateSawmill(diff)

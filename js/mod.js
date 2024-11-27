@@ -1,5 +1,6 @@
 let modInfo = {
 	name: "The Mining Tree",
+	id: "the-mining-tree",
 	author: "Steve (I am Steve)",
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js", "mine.js", "town.js", "forest.js", "player.js"],
@@ -17,7 +18,7 @@ let VERSION = {
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
+	<h3>v0.0 (Tech Demo Build)</h3><br>
 		- Added the Mine.<br>
 		- Added the Town.<br>
 		- Added the Forest.<br>
@@ -119,6 +120,8 @@ function modUpdateTemp() {
 	tmp.mod.pumpSpeed = getPlayerPumpSpeed()
 	tmp.mod.autosmelt = getPlayerAutosmeltChance()
 	tmp.mod.autosaw = getPlayerAutosawChance()
+	
+	tmp.mod.cuttingExhPenalty = (((Math.max(player.forest.treeExhaustion-1,0))/10)+1)**0.8
 	
 }
 function updatePlayerBlock() {

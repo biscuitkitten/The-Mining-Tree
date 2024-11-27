@@ -578,6 +578,8 @@ function exitMine() {
 	player.mine.manualHoleTime = 0
 	player.town.unlocked = true
 	player.forest.unlocked = true
+	player.forest.playerX = 1
+	player.forest.playerY = 1
 	player.tab = "none"
 	updatePlayerBlock()
 }
@@ -874,7 +876,7 @@ function mineXYDisplay() {
 }
 function mineMvmtDisplay() {
 	if (player.mine.depth < 1) return ""
-	return "Movement cooldown: "+format(player.mine.moveCooldown)
+	return "Movement cooldown: "+format(player.mine.moveCooldown,2)
 }
 
 // Manual holes - the player can create holes to deeper depths without finding them, but this takes a while
