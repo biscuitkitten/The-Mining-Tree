@@ -1,0 +1,111 @@
+
+HIGH priority
+- improve display performance if possible
+
+MID priority
+- more interesting graphical/visual appearances of ores
+- Cursed Keys
+- Treasure Chests
+- Storage Building
+- Quarries
+- New mines with new ores (Hallowed Mine and more!)
+	- Hallowed Mine
+	- "New" Mine
+	- Coastal Mine
+	- Sweet Mine
+	- Random "Rogue" Mine "Mystery Mine" (checkpoints disabled, cleared upon exit or death)
+- Inventory display adds "s" to the names of plural stacks when applicable
+- Make so lakes can reveal holes when drained?
+- Running / stamina
+- Update buttons/text to be on top of tint overlays
+- New tree types
+	- Petrified Wood (handle boosts both mining and cutting speeds by 10%)
+- ability to change player symbol
+
+LOW priority
+- Explosives have fuses
+- Cracks can appear outside of bedrock in some mines (a crack can be destroyed with dynamite or creating a manual hole on a crack is 2x faster than usual)
+- Potions (pushed to later game)
+- Headlamps are fully fleshed out themes instead of just background change
+
+Possible changes
+- should forge items have different smelt times? currently only for tin due to low melting point
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+THIS WILL NEVER HAPPEN
+- multiplayer support
