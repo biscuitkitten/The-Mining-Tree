@@ -578,8 +578,6 @@ function exitMine() {
 	player.mine.manualHoleTime = 0
 	player.town.unlocked = true
 	player.forest.unlocked = true
-	player.forest.playerX = 1
-	player.forest.playerY = 1
 	player.tab = "none"
 	updatePlayerBlock()
 }
